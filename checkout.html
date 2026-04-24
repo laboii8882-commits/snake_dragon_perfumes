@@ -116,6 +116,9 @@
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       const total = cart.reduce((sum, item) => sum + item.price, 0);
 
+      // Build product list for WhatsApp message
+      let productList = cart.map(item => `${item.name} - ₹${item.price}`).join("\n");
+
       const order = {
         customer: { name, email, address, city, postal, phone, payment },
         items: cart,
@@ -128,16 +131,13 @@
       localStorage.setItem("orders", JSON.stringify(orders));
       localStorage.setItem("lastOrder", JSON.stringify(order));
 
-      if (payment === "upi") {
-        // Redirect to WhatsApp with your number and message
-        const whatsappNumber = "919311363154"; // replace with your WhatsApp number (with country code)
-        const message = `Hello, I want to pay via UPI for my order. Total: ₹${total}`;
-        window.location.href = `https://wa.me/919311363154?text=${encodeURIComponent(message)}`;
-      } else {
-        // Cash on Delivery
-        localStorage.removeItem("cart");
-        window.location.href = "order-confirmation.html";
-      }
+      // ✅ Redirect to WhatsApp for both COD and UPI
+      const whatsappNumber = "919311363154"; // replace with your WhatsApp number
+      const message = `Hello, I placed an order.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}, ${city}, ${postal}\n\nPayment Method: ${payment.toUpperCase()}\n\nProducts:\n${productList}\n\nTotal: ₹${total}`;
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+      // Clear cart after placing order
+      localStorage.removeItem("cart");
     });
   </script>
 </body>
