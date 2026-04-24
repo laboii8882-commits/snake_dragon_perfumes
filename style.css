@@ -1,0 +1,313 @@
+/* ---------------- RESET ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+body {
+  background-color: #000; /* black background */
+  color: #f5d76e; /* gold text */
+  line-height: 1.6;
+}
+
+/* ---------------- HEADER ---------------- */
+header {
+  background: #111;
+  color: #f5d76e;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav a {
+  color: #f5d76e;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+/* ---------------- HERO ---------------- */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 20px;
+  background: url("images/logo.png") no-repeat center;
+  background-size: 500px;
+  color: #f5d76e;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero-overlay {
+  background: rgba(0,0,0,0.6);
+  display: inline-block;
+  padding: 20px 40px;
+  border-radius: 10px;
+  animation: fadeInUp 1.5s ease;
+}
+
+/* ---------------- PRODUCTS ---------------- */
+#products {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.product-card {
+  background: #111;
+  border: 1px solid #f5d76e;
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 220px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #f5d76e;
+}
+
+.product-card img {
+  width: 200px;   /* medium size */
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(245,215,110,0.5);
+}
+
+/* ---------------- CART ---------------- */
+#cart {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.cart-container div {
+  background: #111;
+  border: 1px solid #f5d76e;
+  border-radius: 8px;
+  margin: 10px auto;
+  padding: 12px;
+  max-width: 400px;
+  animation: slideIn 0.6s ease; /* animate items when they appear */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  color: #f5d76e;
+}
+
+.cart-container div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(245,215,110,0.5);
+}
+
+.cart-container button {
+  background: #f5d76e;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cart-container button:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
+
+.btn {
+  background: #f5d76e;
+  color: #000;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 20px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: fadeInUp 1.2s ease;
+}
+
+.btn:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* ---------------- LOGIN & SIGNUP ---------------- */
+#login, #signup {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #f5d76e;
+  border-radius: 6px;
+  background: #000;
+  color: #f5d76e;
+}
+
+form input:focus {
+  box-shadow: 0 0 8px rgba(245,215,110,0.8);
+}
+
+form button {
+  background: #f5d76e;
+  color: #000;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+form button:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* ---------------- CHECKOUT ---------------- */
+#checkout {
+  padding: 60px 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.order-summary {
+  background: #111;
+  border: 1px solid #f5d76e;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  animation: fadeInUp 1.2s ease;
+}
+
+#checkout-form {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 1.5s ease;
+}
+
+#checkout-form input, #checkout-form select {
+  background: #000;
+  color: #f5d76e;
+  border: 1px solid #f5d76e;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
+#checkout-form input:focus, #checkout-form select:focus {
+  box-shadow: 0 0 12px rgba(245,215,110,0.8);
+}
+
+#checkout-form button {
+  background: #f5d76e;
+  color: #000;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: fadeInUp 1.5s ease;
+}
+
+#checkout-form button:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* ---------------- FOOTER ---------------- */
+footer {
+  background: #111;
+  color: #f5d76e;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+.animated-title {
+  animation: fadeInDown 1.2s ease;
+  color: #f5d76e;
+  text-align: center;
+}
+
+.animated-box {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.animated-item {
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.animated-button {
+  animation: fadeInUp 1.5s ease;
+}
+
+.pulse {
+  animation: pulse 0.6s ease infinite;
+}
+
+/* Keyframes */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Dragon Perfumes</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Extra styling for social/help section */
+    .social-help {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background: #111;
+      border: 1px solid #f5d76e;
+      border-radius: 12px;
+      color: #f5d76e;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .social-help a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background: #f5d76e;
+      color: #000;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .social-help a:hover {
+      background: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Snake Dragon</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay">
+      <h2>Unleash the Power of Fragrance</h2>
+      <p>Luxury handmade perfumes inspired by elegance and mystery.</p>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2>Our Products</h2>
+    <div class="product-grid" id="product-grid"></div>
+  </section>
+
+  <!-- Instagram + WhatsApp Help Section -->
+  <section class="social-help">
+    <h2>Connect With Us</h2>
+    <p>Follow us on Instagram for latest updates and reach us on WhatsApp for help.</p>
+    <a href="https://instagram.com/snake_dragon2026" target="_blank">Instagram</a>
+    <a href="https://wa.me/918307419405" target="_blank">WhatsApp Help and feedback</a>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    loadProducts(); // call function to load products from localStorage
+  </script>
+
+  <footer>
+    <p>&copy; 2026 Snake Dragon Perfumes. All rights reserved.</p>
+  </footer>
+    <script src="script.js"></script>
+  <script>
+    function loadProducts() {
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+      const grid = document.getElementById("product-grid");
+      grid.innerHTML = "";
+
+      if (products.length === 0) {
+        grid.innerHTML = "<p>No products available yet.</p>";
+      } else {
+        products.forEach((p, i) => {
+          grid.innerHTML += `
+            <div class="product-card animated-item">
+              <img src="${p.image}" alt="${p.name}">
+              <h3>${p.name}</h3>
+              <p>₹${p.price}</p>
+              <button onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
+            </div>
+          `;
+        });
+      }
+    }
+
+    // Run when page loads
+    loadProducts();
+  </script>
+
+  <footer>
+    <p>&copy; 2026 Snake Dragon Perfumes. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+</body>
+</html>

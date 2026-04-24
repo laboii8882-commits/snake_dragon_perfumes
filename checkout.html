@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Snake Dragon</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Animations */
+    .animated-title {
+      animation: fadeInDown 1.2s ease;
+      color: #f5d76e;
+      text-align: center;
+    }
+
+    .animated-box {
+      background: #111;
+      border: 1px solid #f5d76e;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      animation: fadeInUp 1.5s ease;
+      color: #f5d76e;
+    }
+
+    .animated-form input, .animated-form select {
+      background: #000;
+      color: #f5d76e;
+      border: 1px solid #f5d76e;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      width: 100%;
+      animation: fadeIn 1.2s ease;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .animated-form input:focus, .animated-form select:focus {
+      box-shadow: 0 0 12px rgba(245,215,110,0.8);
+    }
+
+    .animated-button {
+      background: #f5d76e;
+      color: #000;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.3s ease, background 0.3s ease;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .animated-button:hover {
+      background: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <section id="checkout">
+    <h2 class="animated-title">Checkout</h2>
+
+    <div class="order-summary animated-box">
+      <h3>Your Order</h3>
+      <div id="checkout-items"></div>
+      <p id="checkout-total">Total: ₹0</p>
+    </div>
+
+    <form id="checkout-form" class="animated-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="Address" required>
+      <input type="text" placeholder="City" required>
+      <input type="text" placeholder="Postal Code" required>
+      <input type="text" placeholder="Phone Number" required>
+      <select id="payment-method" required>
+        <option value="">Select Payment</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="upi">UPI (via WhatsApp)</option>
+      </select>
+      <button type="submit" class="animated-button">Place Order</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    displayCart("checkout-items", "checkout-total");
+
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = this.querySelector("input[placeholder='Full Name']").value;
+      const email = this.querySelector("input[placeholder='Email Address']").value;
+      const address = this.querySelector("input[placeholder='Address']").value;
+      const city = this.querySelector("input[placeholder='City']").value;
+      const postal = this.querySelector("input[placeholder='Postal Code']").value;
+      const phone = this.querySelector("input[placeholder='Phone Number']").value;
+      const payment = document.getElementById("payment-method").value;
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      const order = {
+        customer: { name, email, address, city, postal, phone, payment },
+        items: cart,
+        total: total,
+        date: new Date().toLocaleString()
+      };
+
+      let orders = JSON.parse(localStorage.getItem("orders")) || [];
+      orders.push(order);
+      localStorage.setItem("orders", JSON.stringify(orders));
+      localStorage.setItem("lastOrder", JSON.stringify(order));
+
+      if (payment === "upi") {
+        // Redirect to WhatsApp with your number and message
+        const whatsappNumber = "919311363154"; // replace with your WhatsApp number (with country code)
+        const message = `Hello, I want to pay via UPI for my order. Total: ₹${total}`;
+        window.location.href = `https://wa.me/919311363154?text=${encodeURIComponent(message)}`;
+      } else {
+        // Cash on Delivery
+        localStorage.removeItem("cart");
+        window.location.href = "order-confirmation.html";
+      }
+    });
+  </script>
+</body>
+</html>
