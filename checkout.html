@@ -116,9 +116,6 @@
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
       const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-      // Build product list for WhatsApp message
-      let productList = cart.map(item => `${item.name} - ₹${item.price}`).join("\n");
-
       const order = {
         customer: { name, email, address, city, postal, phone, payment },
         items: cart,
@@ -133,7 +130,7 @@
 
       // ✅ Redirect to WhatsApp for both COD and UPI
       const whatsappNumber = "919311363154"; // replace with your WhatsApp number
-      const message = `Hello, I placed an order.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}, ${city}, ${postal}\n\nPayment Method: ${payment.toUpperCase()}\n\nProducts:\n${productList}\n\nTotal: ₹${total}`;
+      const message = `Hello, I placed an order.\nName: ${name}\nTotal: ₹${total}\nPayment Method: ${payment.toUpperCase()}\nAddress: ${address}, ${city}, ${postal}\nPhone: ${phone}`;
       window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
       // Clear cart after placing order
