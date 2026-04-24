@@ -72,6 +72,19 @@
       margin-top: 10px;
       border-radius: 6px;
     }
+    body {
+  background: #000 url('logo.png') no-repeat center center fixed;
+  background-size: 70%; /* Adjust size as needed */
+  color: #f5d76e;
+  font-family: Arial, sans-serif;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6); /* dark overlay */
+  z-index: -1;
+}
   </style>
 </head>
 <body>
