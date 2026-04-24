@@ -6,6 +6,33 @@
   <title>Snake Dragon Perfumes</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* Hero section with logo background */
+    .hero {
+      position: relative;
+      height: 400px; /* adjust height as needed */
+      background: #000 url('logo.png') no-repeat center center;
+      /* 👆 place your logo file in an "images" folder */
+      background-size: 60%; /* adjust size to make logo big */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #f5d76e;
+    }
+
+    /* Dark overlay for readability */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 1;
+    }
+
     /* Extra styling for social/help section */
     .social-help {
       text-align: center;
@@ -49,6 +76,7 @@
     </nav>
   </header>
 
+  <!-- Hero section with logo background -->
   <section class="hero">
     <div class="hero-overlay">
       <h2>Unleash the Power of Fragrance</h2>
@@ -70,14 +98,6 @@
   </section>
 
   <script src="script.js"></script>
-  <script>
-    loadProducts(); // call function to load products from localStorage
-  </script>
-
-  <footer>
-    <p>&copy; 2026 Snake Dragon Perfumes. All rights reserved.</p>
-  </footer>
-    <script src="script.js"></script>
   <script>
     function loadProducts() {
       const products = JSON.parse(localStorage.getItem("products")) || [];
@@ -107,8 +127,5 @@
   <footer>
     <p>&copy; 2026 Snake Dragon Perfumes. All rights reserved.</p>
   </footer>
-</body>
-</html>
-
 </body>
 </html>
